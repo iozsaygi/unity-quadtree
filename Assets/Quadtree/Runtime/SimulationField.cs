@@ -25,6 +25,12 @@ namespace Quadtree.Runtime
                     Quaternion.identity);
 
                 simulationEntityInstance.transform.SetParent(transform, true);
+
+                // Generate random color for simulation entity.
+                var spriteRenderer = simulationEntityInstance.GetComponent<SpriteRenderer>();
+                var randomizedColor = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f),
+                    Random.Range(0.0f, 1.0f));
+                spriteRenderer.color = randomizedColor;
             }
         }
 
