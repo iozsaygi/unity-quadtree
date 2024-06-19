@@ -260,7 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 6, y: 4, z: 0}
+    m_Extent: {x: 4, y: 4, z: 0}
   simulationEntityPrefab: {fileID: 9190858867019615537, guid: a28aa794e020a4f64a020979a5ab7d70, type: 3}
   maximumNumberOfAllowedSimulationEntities: 50
 --- !u!1 &1739046177
