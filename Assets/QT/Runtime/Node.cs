@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Quadtree.Runtime
+namespace QT.Runtime
 {
     /// <summary>
     /// Basic node struct to represent each element in quadtree.

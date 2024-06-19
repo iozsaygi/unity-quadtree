@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Quadtree.Runtime
+namespace QT.Runtime
 {
     /// <summary>
     /// Basic universe/scene for entities in it.
