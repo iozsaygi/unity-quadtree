@@ -43,19 +43,19 @@ namespace QT.Runtime
             }
 
             // Generate a new quadtree.
-            // _quadtree = new Quadtree(bounds, 1);
+            _quadtree = new Quadtree(bounds, 1);
 
             // Register simulation positions to the quadtree.
             for (byte i = 0; i < runtimePositionsOfSimulationEntities.Length; i++)
             {
-                // _quadtree.InsertPosition(runtimePositionsOfSimulationEntities[i]);
+                _quadtree.InsertPosition(runtimePositionsOfSimulationEntities[i]);
             }
         }
 
         private void OnDrawGizmosSelected()
         {
             // Rendering the extents of the simulation field.
-            // _quadtree?.Render();
+            _quadtree?.OnDrawGizmosSelected();
         }
     }
 }

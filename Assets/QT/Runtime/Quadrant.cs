@@ -61,6 +61,20 @@ namespace QT.Runtime
             }
         }
 
+        public void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.white;
+            Gizmos.DrawWireCube(_bounds.center, _bounds.size);
+
+            // Also render the subdivision quadrants.
+            if (!_isSubdivided) return;
+
+            _northWest.OnDrawGizmosSelected();
+            _northEast.OnDrawGizmosSelected();
+            _southWest.OnDrawGizmosSelected();
+            _southEast.OnDrawGizmosSelected();
+        }
+
         private void Subdivide()
         {
             // Calculate the bounds for each child quadrant.
