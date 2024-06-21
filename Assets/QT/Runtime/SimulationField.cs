@@ -10,10 +10,16 @@ namespace QT.Runtime
     {
         [SerializeField] private Bounds bounds;
         [SerializeField] private GameObject simulationEntityPrefab;
+        [SerializeField] private Vector3[] runtimePositionsOfSimulationEntities;
         [SerializeField] private byte maximumNumberOfAllowedSimulationEntities;
+
+        private Quadtree _quadtree;
 
         private void Start()
         {
+            // Allocate the positions array.
+            runtimePositionsOfSimulationEntities = new Vector3[maximumNumberOfAllowedSimulationEntities];
+
             // Generate simulation entity prefabs at random positions within simulation bounds.
             for (byte i = 0; i < maximumNumberOfAllowedSimulationEntities; i++)
             {
@@ -31,6 +37,18 @@ namespace QT.Runtime
                 var randomizedColor = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f),
                     Random.Range(0.0f, 1.0f));
                 spriteRenderer.color = randomizedColor;
+
+                // Register the position of entity for further usage.
+                runtimePositionsOfSimulationEntities[i] = randomPositionWithinSimulationBounds;
+            }
+
+            // Generate a new quadtree.
+            _quadtree = new Quadtree(bounds, 5);
+
+            // Register simulation positions to the quadtree.
+            for (byte i = 0; i < runtimePositionsOfSimulationEntities.Length; i++)
+            {
+                _quadtree.InsertPosition(runtimePositionsOfSimulationEntities[i]);
             }
         }
 
