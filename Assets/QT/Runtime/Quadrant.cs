@@ -63,7 +63,7 @@ namespace QT.Runtime
 
         private void Subdivide()
         {
-            // Calculate the bounds for each child.
+            // Calculate the bounds for each child quadrant.
             var originalCenter = _bounds.center;
             var originalSize = _bounds.size;
             var newSize = originalSize / 2;
@@ -78,7 +78,7 @@ namespace QT.Runtime
             var southWestBounds = new Bounds(southWestCenter, newSize);
             var southEastBounds = new Bounds(southEastCenter, newSize);
 
-            // Allocate every single children quadtree reference.
+            // Allocate every single children quadrant reference.
             _northWest = new Quadrant(northWestBounds, _positionRegistryCapacity);
             _northEast = new Quadrant(northEastBounds, _positionRegistryCapacity);
             _southEast = new Quadrant(southEastBounds, _positionRegistryCapacity);
