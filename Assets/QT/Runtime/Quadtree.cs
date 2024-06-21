@@ -45,9 +45,17 @@ namespace QT.Runtime
             }
         }
 
-        private bool IsPositionWithInBounds(Vector3 position)
+        public void Render()
         {
-            return _bounds.Contains(position);
+            Gizmos.color = Color.white;
+            Gizmos.DrawWireCube(_bounds.center, _bounds.size);
+
+            // Recursively render each child.
+            if (!_isSubdivided) return;
+            _northWest.Render();
+            _northEast.Render();
+            _southWest.Render();
+            _southEast.Render();
         }
 
         private void Subdivide()
@@ -74,6 +82,11 @@ namespace QT.Runtime
             _southWest = new Quadtree(southWestBounds, _boundsPositionRegistryCapacity);
 
             _isSubdivided = true;
+        }
+
+        private bool IsPositionWithInBounds(Vector3 position)
+        {
+            return _bounds.Contains(position);
         }
     }
 }

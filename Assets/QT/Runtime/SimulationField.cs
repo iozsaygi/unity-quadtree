@@ -43,7 +43,7 @@ namespace QT.Runtime
             }
 
             // Generate a new quadtree.
-            _quadtree = new Quadtree(bounds, 5);
+            _quadtree = new Quadtree(bounds, 1);
 
             // Register simulation positions to the quadtree.
             for (byte i = 0; i < runtimePositionsOfSimulationEntities.Length; i++)
@@ -55,8 +55,7 @@ namespace QT.Runtime
         private void OnDrawGizmosSelected()
         {
             // Rendering the extents of the simulation field.
-            Gizmos.color = Color.white;
-            Gizmos.DrawWireCube(bounds.center, bounds.size);
+            _quadtree?.Render();
         }
     }
 }
