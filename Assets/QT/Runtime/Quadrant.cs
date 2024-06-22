@@ -95,8 +95,8 @@ namespace QT.Runtime
             // Allocate every single children quadrant reference.
             _northWest = new Quadrant(northWestBounds, _positionRegistryCapacity);
             _northEast = new Quadrant(northEastBounds, _positionRegistryCapacity);
-            _southEast = new Quadrant(southEastBounds, _positionRegistryCapacity);
             _southWest = new Quadrant(southWestBounds, _positionRegistryCapacity);
+            _southEast = new Quadrant(southEastBounds, _positionRegistryCapacity);
 
             _isSubdivided = true;
         }
