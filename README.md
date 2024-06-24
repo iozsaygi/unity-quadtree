@@ -11,7 +11,7 @@ see [this](https://en.wikipedia.org/wiki/Quadtree) page to get detailed informat
 
 ## Included API implementations
 
-- `public void InsertPosition(Vector3 position)`
+- `public void InsertPosition(Vector3 position);`
     - Adds the given position to the quadtree, considers the position capacity allowed for each quadrant, and subdivides
       the root quadrant if it is required.
 
