@@ -9,6 +9,10 @@ see [this](https://en.wikipedia.org/wiki/Quadtree) page to get detailed informat
 ![Second preview](https://github.com/iozsaygi/unity-quadtree/blob/main/Media/Preview-1.png)
 ![Third preview](https://github.com/iozsaygi/unity-quadtree/blob/main/Media/Preview-2.png)
 
+## Included API implementations
+
+- `public void InsertPosition(Vector3 position)`
+
 ## License
 
 [MIT License](https://github.com/iozsaygi/unity-quadtree/blob/main/LICENSE)
