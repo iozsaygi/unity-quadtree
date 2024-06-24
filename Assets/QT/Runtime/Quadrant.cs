@@ -82,10 +82,10 @@ namespace QT.Runtime
             var originalSize = _bounds.size;
             var newSize = originalSize / 2;
 
-            var northWestCenter = originalCenter + new Vector3(-newSize.x / 2, 0, newSize.z / 2);
-            var northEastCenter = originalCenter + new Vector3(newSize.x / 2, 0, newSize.z / 2);
-            var southWestCenter = originalCenter + new Vector3(-newSize.x / 2, 0, -newSize.z / 2);
-            var southEastCenter = originalCenter + new Vector3(newSize.x / 2, 0, -newSize.z / 2);
+            var northWestCenter = originalCenter + new Vector3(-newSize.x / 2, newSize.z / 2, 0.0f);
+            var northEastCenter = originalCenter + new Vector3(newSize.x / 2, newSize.z / 2, 0.0f);
+            var southWestCenter = originalCenter + new Vector3(-newSize.x / 2, -newSize.z / 2, 0.0f);
+            var southEastCenter = originalCenter + new Vector3(newSize.x / 2, -newSize.z / 2, 0.0f);
 
             var northWestBounds = new Bounds(northWestCenter, newSize);
             var northEastBounds = new Bounds(northEastCenter, newSize);
