@@ -77,22 +77,32 @@ namespace QT.Runtime
 
         private void Subdivide()
         {
-            // Calculate the bounds for each child quadrant.
+            // Calculate the size for each child quadrant.
             var originalCenter = _bounds.center;
             var originalSize = _bounds.size;
-            var newSize = originalSize / 2;
+            var newSize = new Vector3(originalSize.x / 2, originalSize.y / 2, originalSize.z);
 
-            var northWestCenter = originalCenter + new Vector3(-newSize.x / 2, newSize.z / 2, 0.0f);
-            var northEastCenter = originalCenter + new Vector3(newSize.x / 2, newSize.z / 2, 0.0f);
-            var southWestCenter = originalCenter + new Vector3(-newSize.x / 2, -newSize.z / 2, 0.0f);
-            var southEastCenter = originalCenter + new Vector3(newSize.x / 2, -newSize.z / 2, 0.0f);
+            // Calculate half sizes for easier calculations.
+            var halfHorizontalSize = newSize.x / 2;
+            var halfVerticalSize = newSize.y / 2;
 
+            // Calculate centers for the four child quadrants.
+            var northWestCenter = new Vector3(originalCenter.x - halfHorizontalSize,
+                originalCenter.y + halfVerticalSize, originalCenter.z);
+            var northEastCenter = new Vector3(originalCenter.x + halfHorizontalSize,
+                originalCenter.y + halfVerticalSize, originalCenter.z);
+            var southWestCenter = new Vector3(originalCenter.x - halfHorizontalSize,
+                originalCenter.y - halfVerticalSize, originalCenter.z);
+            var southEastCenter = new Vector3(originalCenter.x + halfHorizontalSize,
+                originalCenter.y - halfVerticalSize, originalCenter.z);
+
+            // Create bounds for each child quadrant.
             var northWestBounds = new Bounds(northWestCenter, newSize);
             var northEastBounds = new Bounds(northEastCenter, newSize);
             var southWestBounds = new Bounds(southWestCenter, newSize);
             var southEastBounds = new Bounds(southEastCenter, newSize);
 
-            // Allocate every single children quadrant reference.
+            // Allocate every single child quadrant reference.
             _northWest = new Quadrant(northWestBounds, _positionRegistryCapacity);
             _northEast = new Quadrant(northEastBounds, _positionRegistryCapacity);
             _southWest = new Quadrant(southWestBounds, _positionRegistryCapacity);
