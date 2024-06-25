@@ -10,15 +10,15 @@ namespace QT.Runtime
     {
         [SerializeField] private Bounds bounds;
         [SerializeField] private GameObject simulationEntityPrefab;
-        [SerializeField] private Vector3[] runtimePositionsOfSimulationEntities;
+        [SerializeField] private GameObject[] simulationEntityInstances;
         [SerializeField] private byte maximumNumberOfAllowedSimulationEntities;
 
         private Quadtree _quadtree;
 
-        private void Start()
+        private void OnEnable()
         {
             // Allocate the positions array.
-            runtimePositionsOfSimulationEntities = new Vector3[maximumNumberOfAllowedSimulationEntities];
+            simulationEntityInstances = new GameObject[maximumNumberOfAllowedSimulationEntities];
 
             // Generate simulation entity prefabs at random positions within simulation bounds.
             for (byte i = 0; i < maximumNumberOfAllowedSimulationEntities; i++)
@@ -39,14 +39,31 @@ namespace QT.Runtime
                 spriteRenderer.color = randomizedColor;
 
                 // Register the position of entity for further usage.
-                runtimePositionsOfSimulationEntities[i] = randomPositionWithinSimulationBounds;
+                simulationEntityInstances[i] = simulationEntityInstance;
             }
 
             // Generate a new quadtree.
             _quadtree = new Quadtree(bounds, 1);
 
-            // Register simulation positions to the quadtree.
-            _quadtree.Construct(runtimePositionsOfSimulationEntities);
+            // Register simulation positions to the quadtree for construction.
+            var simulationEntityInstancePositions = new Vector3[simulationEntityInstances.Length];
+            for (byte i = 0; i < simulationEntityInstances.Length; i++)
+            {
+                simulationEntityInstancePositions[i] = simulationEntityInstances[i].transform.position;
+            }
+
+            _quadtree.Construct(simulationEntityInstancePositions);
+        }
+
+        private void OnDisable()
+        {
+            // Destroy the existing sim. entities.
+            for (byte i = 0; i < simulationEntityInstances.Length; i++)
+            {
+                Destroy(simulationEntityInstances[i]);
+            }
+
+            simulationEntityInstances = null;
         }
 
         private void OnDrawGizmosSelected()
