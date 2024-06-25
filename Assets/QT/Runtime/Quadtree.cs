@@ -12,6 +12,15 @@ namespace QT.Runtime
             _root = new Quadrant(bounds, positionRegistryCapacityPerQuadrant);
         }
 
+        public void Construct(Vector3[] positions)
+        {
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < positions.Length; i++)
+            {
+                _root.InsertPosition(positions[i]);
+            }
+        }
+
         public void InsertPosition(Vector3 position)
         {
             _root.InsertPosition(position);

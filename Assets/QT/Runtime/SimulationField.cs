@@ -46,10 +46,7 @@ namespace QT.Runtime
             _quadtree = new Quadtree(bounds, 1);
 
             // Register simulation positions to the quadtree.
-            for (byte i = 0; i < runtimePositionsOfSimulationEntities.Length; i++)
-            {
-                _quadtree.InsertPosition(runtimePositionsOfSimulationEntities[i]);
-            }
+            _quadtree.Construct(runtimePositionsOfSimulationEntities);
         }
 
         private void OnDrawGizmosSelected()
