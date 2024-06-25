@@ -12,7 +12,8 @@ see [this](https://en.wikipedia.org/wiki/Quadtree) page to get detailed informat
 ## Included API implementations
 
 - `public void Construct(Vector3[] positions);`
-    - Adds the given array of positions to the quadtree and automatically handles subdivisions.
+    - Adds the given array of positions to the quadtree and automatically handles position capacity per quadrant and
+      subdivision.
 - `public void InsertPosition(Vector3 position);`
     - Adds the given position to the quadtree, considers the position capacity allowed for each quadrant, and subdivides
       the root quadrant if it is required.
