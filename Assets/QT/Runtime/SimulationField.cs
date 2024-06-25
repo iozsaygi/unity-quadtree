@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UnityEngine;
 
 namespace QT.Runtime
@@ -52,7 +53,14 @@ namespace QT.Runtime
                 simulationEntityInstancePositions[i] = simulationEntityInstances[i].transform.position;
             }
 
+            // Also measure the time for construction.
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
             _quadtree.Construct(simulationEntityInstancePositions);
+            stopwatch.Stop();
+
+            UnityEngine.Debug.Log($"It took {stopwatch.ElapsedMilliseconds} milliseconds to construct the quadtree");
         }
 
         private void OnDisable()
