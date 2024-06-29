@@ -264,6 +264,52 @@ MonoBehaviour:
   simulationEntityPrefab: {fileID: 9190858867019615537, guid: a28aa794e020a4f64a020979a5ab7d70, type: 3}
   simulationEntityInstances: []
   maximumNumberOfAllowedSimulationEntities: 100
+--- !u!1 &1374594766
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1374594768}
+  - component: {fileID: 1374594767}
+  m_Layer: 0
+  m_Name: _SimulationDebugController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1374594767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374594766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c2bbb29310a4cde94689c90928dcd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 519420031}
+  simulationField: {fileID: 1360786540}
+--- !u!4 &1374594768
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374594766}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1739046177
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,3 +348,4 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1739046178}
   - {fileID: 1360786539}
+  - {fileID: 1374594768}

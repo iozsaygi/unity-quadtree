@@ -9,12 +9,12 @@ namespace QT.Runtime
     [DisallowMultipleComponent]
     public class SimulationField : MonoBehaviour
     {
+        public Quadtree Quadtree { get; private set; }
+
         [SerializeField] private Bounds bounds;
         [SerializeField] private GameObject simulationEntityPrefab;
         [SerializeField] private GameObject[] simulationEntityInstances;
         [SerializeField] private byte maximumNumberOfAllowedSimulationEntities;
-
-        private Quadtree _quadtree;
 
         private void OnEnable()
         {
@@ -44,7 +44,7 @@ namespace QT.Runtime
             }
 
             // Generate a new quadtree.
-            _quadtree = new Quadtree(bounds, 1);
+            Quadtree = new Quadtree(bounds, 1);
 
             // Register simulation positions to the quadtree for construction.
             var simulationEntityInstancePositions = new Vector3[simulationEntityInstances.Length];
@@ -57,7 +57,7 @@ namespace QT.Runtime
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            _quadtree.Construct(simulationEntityInstancePositions);
+            Quadtree.Construct(simulationEntityInstancePositions);
             stopwatch.Stop();
 
             UnityEngine.Debug.Log($"It took {stopwatch.ElapsedMilliseconds} milliseconds to construct the quadtree");
@@ -77,7 +77,7 @@ namespace QT.Runtime
         private void OnDrawGizmosSelected()
         {
             // Rendering the extents of the simulation field.
-            _quadtree?.OnDrawGizmosSelected();
+            Quadtree?.OnDrawGizmosSelected();
         }
     }
 }
