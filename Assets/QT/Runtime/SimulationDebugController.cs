@@ -19,14 +19,15 @@ namespace QT.Runtime
             if (Input.GetMouseButtonDown(0))
             {
                 // Find the positions that are nearby the mouse.
-                var mousePositionInWorldCoordinates = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+                var mouseScreenPosition = Input.mousePosition;
+                mouseScreenPosition.z = mainCamera.nearClipPlane;
+
+                // Convert the screen mouse position to world mouse position.
+                var convertedMousePosition = mainCamera.ScreenToWorldPoint(mouseScreenPosition);
+                var mousePositionInWorldCoordinates = new Vector2(convertedMousePosition.x, convertedMousePosition.y);
                 var positionsNearbyMouse = simulationField.Quadtree.GetPositionsNearby(mousePositionInWorldCoordinates);
 
-                foreach (var positionNearbyMouse in positionsNearbyMouse)
-                {
-                    Debug.Log(
-                        $"{positionNearbyMouse} is nearby of current mouse position, total count of positions that are nearby of mouse is {positionsNearbyMouse.Count}");
-                }
+                Debug.Log($"Found {positionsNearbyMouse.Count} position nearby mouse");
             }
         }
     }
