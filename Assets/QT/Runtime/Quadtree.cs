@@ -32,6 +32,7 @@ namespace QT.Runtime
             return _root.GetPositionsNearby(origin);
         }
 
+        // Debugging and demo purposes only, not the actual part of quadtree API.
         public void OnDrawGizmosSelected()
         {
             _root.OnDrawGizmosSelected();

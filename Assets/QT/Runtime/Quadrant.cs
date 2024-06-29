@@ -62,10 +62,10 @@ namespace QT.Runtime
         {
             // Check if given 'origin' is inside the bounds of current quadrant.
             if (!_bounds.Contains(origin)) return new List<Vector3>().AsReadOnly();
-            
+
             // Check if current quadrant subdivided before.
             if (!_isSubdivided) return _positionRegistry.AsReadOnly();
-            
+
             // The quadrant is subdivided, query each child quadrant it has.
             var nearbyPositions = new List<Vector3>();
 
@@ -77,6 +77,7 @@ namespace QT.Runtime
             return nearbyPositions.AsReadOnly();
         }
 
+        // Debugging and demo purposes only, not the actual part of quadtree API.
         public void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.white;
