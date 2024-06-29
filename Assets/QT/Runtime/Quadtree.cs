@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace QT.Runtime
@@ -24,6 +25,11 @@ namespace QT.Runtime
         public void InsertPosition(Vector3 position)
         {
             _root.InsertPosition(position);
+        }
+
+        public IReadOnlyList<Vector3> GetPositionsNearby(Vector3 origin)
+        {
+            return _root.GetPositionsNearby(origin);
         }
 
         public void OnDrawGizmosSelected()

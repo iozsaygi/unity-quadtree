@@ -58,6 +58,25 @@ namespace QT.Runtime
             }
         }
 
+        public IReadOnlyList<Vector3> GetPositionsNearby(Vector3 origin)
+        {
+            // Check if given 'origin' is inside the bounds of current quadrant.
+            if (!_bounds.Contains(origin)) return new List<Vector3>().AsReadOnly();
+            
+            // Check if current quadrant subdivided before.
+            if (!_isSubdivided) return _positionRegistry.AsReadOnly();
+            
+            // The quadrant is subdivided, query each child quadrant it has.
+            var nearbyPositions = new List<Vector3>();
+
+            nearbyPositions.AddRange(_northWest.GetPositionsNearby(origin));
+            nearbyPositions.AddRange(_northEast.GetPositionsNearby(origin));
+            nearbyPositions.AddRange(_southWest.GetPositionsNearby(origin));
+            nearbyPositions.AddRange(_southEast.GetPositionsNearby(origin));
+
+            return nearbyPositions.AsReadOnly();
+        }
+
         public void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.white;

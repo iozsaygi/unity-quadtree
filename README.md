@@ -17,6 +17,8 @@ see [this](https://en.wikipedia.org/wiki/Quadtree) page to get detailed informat
 - `public void InsertPosition(Vector3 position);`
     - Adds the given position to the quadtree, considers the position capacity allowed for each quadrant, and subdivides
       the root quadrant if it is required.
+- `public IReadOnlyList<Vector3> GetPositionsNearby(Vector3 origin);`
+    - Returns a read-only list of Vector3's that are nearby the given origin position.
 
 ## License
 
