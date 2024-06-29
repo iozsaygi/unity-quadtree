@@ -48,10 +48,7 @@ namespace QT.Runtime
             {
                 // We don't have enough space in registry, it is time to subdivide the quadrant.
                 // But we need to check if it is subdivided before.
-                if (!_isSubdivided)
-                {
-                    Subdivide();
-                }
+                if (!_isSubdivided) Subdivide();
 
                 // Try to add given position to each quadrant.
                 _northWest.InsertPosition(position);
