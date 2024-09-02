@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.Profiling;
 
 namespace QT.Runtime
 {
@@ -44,6 +45,7 @@ namespace QT.Runtime
             }
 
             // Generate a new quadtree.
+            Profiler.BeginSample(ProfilerConstants.ProfilerSampleLabel);
             Quadtree = new Quadtree(bounds, 1);
 
             // Register simulation positions to the quadtree for construction.
@@ -58,6 +60,7 @@ namespace QT.Runtime
             stopwatch.Start();
 
             Quadtree.Construct(simulationEntityInstancePositions);
+            Profiler.EndSample();
             stopwatch.Stop();
 
             UnityEngine.Debug.Log($"It took {stopwatch.ElapsedMilliseconds} milliseconds to construct the quadtree");
