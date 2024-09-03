@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Profiling;
 
@@ -55,15 +54,8 @@ namespace QT.Runtime
                 simulationEntityInstancePositions[i] = simulationEntityInstances[i].transform.position;
             }
 
-            // Also measure the time for construction.
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
-
             Quadtree.Construct(simulationEntityInstancePositions);
             Profiler.EndSample();
-            stopwatch.Stop();
-
-            UnityEngine.Debug.Log($"It took {stopwatch.ElapsedMilliseconds} milliseconds to construct the quadtree");
         }
 
         private void OnDisable()
